@@ -1,0 +1,45 @@
+---
+- name: Install dependency for gpg
+  become: yes
+  become_user: root
+  hosts: app
+  tasks:
+  - name: repo add
+    shell: curl https://www.getpagespeed.com/files/centos6-eol.repo --output /etc/yum.repos.d/CentOS-Base.repo
+
+#    get_url:
+#      url: https://www.getpagespeed.com/files/centos6-epel-eol.repo
+#      dest: /etc/yum.repos.d/epel.repo
+#      mode: 0644
+
+  - name: repo add 2
+    shell: curl https://www.getpagespeed.com/files/centos6-epel-eol.repo --output /etc/yum.repos.d/epel.repo
+
+#    get_url:
+#      url: https://www.getpagespeed.com/files/centos6-epel-eol.repo
+#      dest: /etc/yum.repos.d/CentOS-Base.repo
+#      mode: 0644
+
+  - name: install libsel
+    yum:
+      name: libselinux-python
+      state: latest
+
+  - name: replace line
+    lineinfile:
+      path: /etc/yum.repos.d/epel.repo
+      regexp: "gpgcheck=1"
+      line: "gpgcheck=0"
+      state: present
+      backup: yes
+
+  - name: replace line
+    lineinfile:
+      path: /etc/yum.repos.d/CentOS-Base.repo
+      regexp: "gpgcheck=1"
+      line: "gpgcheck=0"
+      state: present
+      backup: yes
+
+  - name: yum repolist
+    shell: yum repolist

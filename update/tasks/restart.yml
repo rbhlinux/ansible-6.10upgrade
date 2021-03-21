@@ -1,0 +1,31 @@
+---
+
+  - name: Restart system to reboot to newest kernel
+    shell: "sleep 3 && reboot"
+    async: 1
+    poll: 0
+
+  - name: wait for 10 seconds
+    pause:
+      seconds: 15
+
+  - name: wait for the system to reboot
+    wait_for_connection:
+      connect_timeout: 60
+      sleep: 5
+      delay: 5
+      timeout: 90
+
+  - name: Check Kernel version
+    shell: uname -a
+    register: tsett
+
+  - name: Check RedHat version
+    shell: cat /etc/redhat-release
+    register: tsett2
+ 
+
+  - name: Show versions 
+    debug:
+      msg: "The current version is {{ tsett2.stdout }} and uname output is {{ tsett.stdout }} "
+    

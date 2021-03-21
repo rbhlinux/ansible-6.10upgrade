@@ -1,0 +1,5 @@
+---
+- import_tasks: gpg.yml
+- import_tasks: yum.yml
+- import_tasks: restart.yml
+
