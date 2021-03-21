@@ -6,7 +6,10 @@ Things did:
 1) yum install ansible -y
 2) add hosts and vars to hosts
 3) Divided tasks into three playbooks with 1 handler for yum repolist
+
      i) gpg.yml -> This download the working repo and disbales gpgcheck cuz didnt find working gpgkey for it. It notifies handler repolist
+     
      ii) yum.yml -> This update Cen to 6.10 making it download new kernel and patches to other packages.
+     
      iii) restart.yml -> This takes a reboot for the new kernel to reflect and boot from and returns the variables stating what is the current kernel version it booted with.
      
