@@ -1,0 +1,14 @@
+---
+  - name: Current Kernel Version
+    shell: uname -a
+    register: kern
+
+  - name: update the system
+    yum:
+      name: "*"
+      state: latest
+      releasever: "6.10"
+
+  - name: Print Kernel Version
+    debug:
+      msg: "Current Kernel Version is : {{ kern.stdout }}"
