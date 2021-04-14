@@ -1,30 +1,28 @@
 ---
   - name: Adding Base repo
-    shell: curl https://www.getpagespeed.com/files/centos6-eol.repo --output /etc/yum.repos.d/CentOS-Base.repo
+    shell: curl http://192.168.43.68/repos/CentOS-Base.repo --output /etc/yum.repos.d/CentOS-Base.repo
+#    get_url: 
+#      url: http://192.168.43.68/repos/CentOS-Base.repo
+#      dest: /etc/yum.repos.d/CentOS-Base.repo
+#      mode: 0644
+#   become: yes
 
   - name: Adding epel repo
-    shell: curl https://www.getpagespeed.com/files/centos6-epel-eol.repo --output /etc/yum.repos.d/epel.repo
+    shell: curl http://192.168.43.68/repos/epel.repo --output /etc/yum.repos.d/epel.repo
+#    get_url:
+#      url: http://192.168.43.68/repos/epel.repo
+#      dest:  /etc/yum.repos.d/epel.repo
+#      mode: 0644
+#    become: yes
 
+
+  - name: Repolist
+    shell: yum repolist
+
+  
   - name: Libselinux-python dependency for lineinfile
     yum:
       name: libselinux-python
       state: latest
-
-  - name: Disable GPGcheck for EPEL
-    lineinfile:
-      path: /etc/yum.repos.d/epel.repo
-      regexp: "gpgcheck=1"
-      line: "gpgcheck=0"
-      state: present
-      backup: yes
-
-  - name: Disable GPGcheck for Base
-    lineinfile:
-      path: /etc/yum.repos.d/CentOS-Base.repo
-      regexp: "gpgcheck=1"
-      line: "gpgcheck=0"
-      state: present
-      backup: yes
-    notify:
-      - repolist
-
+  
+    

@@ -1,6 +1,8 @@
 Run the following role with
-ansible-playbook gpg.yml -K (If NOPASSWD is not there else -K can be ignored)
+ansible-playbook roles.yml -K (If NOPASSWD is not there else -K can be ignored)
 
+1) Check for ONBOOT parameter
+2) Check for rhel repos (this is for centos)
 
 Things did:
 1) yum install ansible -y
