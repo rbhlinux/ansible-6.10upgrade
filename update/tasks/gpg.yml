@@ -1,7 +1,20 @@
 ---
-  - name: Adding Base repo
-    shell: curl http://192.168.43.68/repos/CentOS-Base.repo --output /etc/yum.repos.d/CentOS-Base.repo
-#    get_url: 
+  - name: Microsoft repo enable 
+    yum:
+      name: "*"
+      enablerepo: "*microsoft*"
+      state: latest
+      
+  - name: Repolist
+    shell: yum repolist
+
+  
+  - name: Libselinux-python dependency 
+    yum:
+      name: libselinux-python
+      state: latest
+  
+ #    get_url: 
 #      url: http://192.168.43.68/repos/CentOS-Base.repo
 #      dest: /etc/yum.repos.d/CentOS-Base.repo
 #      mode: 0644
@@ -15,14 +28,3 @@
 #      mode: 0644
 #    become: yes
 
-
-  - name: Repolist
-    shell: yum repolist
-
-  
-  - name: Libselinux-python dependency for lineinfile
-    yum:
-      name: libselinux-python
-      state: latest
-  
-    
