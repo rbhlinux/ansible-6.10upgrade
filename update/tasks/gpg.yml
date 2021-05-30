@@ -20,8 +20,8 @@
 #      mode: 0644
 #   become: yes
 
-  - name: Adding epel repo
-    shell: curl http://192.168.43.68/repos/epel.repo --output /etc/yum.repos.d/epel.repo
+#  - name: Adding epel repo
+#    shell: curl http://192.168.43.68/repos/epel.repo --output /etc/yum.repos.d/epel.repo
 #    get_url:
 #      url: http://192.168.43.68/repos/epel.repo
 #      dest:  /etc/yum.repos.d/epel.repo
