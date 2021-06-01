@@ -1,9 +1,10 @@
 ---
   - name: Microsoft repo enable 
-    yum:
-      name: "*"
-      enablerepo: "*microsoft*"
-      state: latest
+    shell: sudo yum update -y --disablerepo='*' --enablerepo='*microsoft*'
+#    yum:
+#      name: "*"
+#      enablerepo: "*microsoft*"
+#      state: latest
       
   - name: Repolist
     shell: yum repolist
