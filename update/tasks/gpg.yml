@@ -4,7 +4,7 @@
 #    yum:
 #      name: "*"
 #      enablerepo: "*microsoft*"
-#      state: latest
+#      state: latest  #https://docs.microsoft.com/en-us/azure/virtual-machines/workloads/redhat/redhat-rhui
       
   - name: Repolist
     shell: yum repolist
