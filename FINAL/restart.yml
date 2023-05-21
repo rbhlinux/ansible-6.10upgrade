@@ -1,5 +1,5 @@
 ---
-- hosts: check
+- hosts: "{{ check }}"
   tasks:
   - name: restart system to reboot to newest kernel
     shell: "sleep 5 && reboot"
