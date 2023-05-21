@@ -1,5 +1,5 @@
 ---
-- hosts: 192.168.29.167
+- hosts: check
   tasks:
   - name: restart system to reboot to newest kernel
     shell: "sleep 5 && reboot"
